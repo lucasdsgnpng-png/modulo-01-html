@@ -18,6 +18,8 @@ function App(){
       <Perfil nome="Lucas" cidade="Nova Serrana"/>
       <Perfil nome="Maria" cidade="São Paulo"/>
       <Contador/>
+      <br></br>
+      
       <Pokemon />
     </div>
   )
