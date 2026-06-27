@@ -16,20 +16,25 @@ const cores = {
   flying:'#4f757f'
 }
 
-function corDoTipo(tipo){
-    const cor = cores[tipo]
-    return cor
-}
+const corDoTipo = (tipo) => cores[tipo]
 
 
-async function buscarPokemon(nome) {
-            const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`)
+
+         const buscarPokemon = async (nome) => {
+          const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`)
+            if (!resposta.ok){
+              window.alert(`O nome que você digitou não existe, tente novamente.`)
+              return
+            }
             const dados = await resposta.json()
-            return dados          
+            return dados 
+
         }
 
 nomePokemon.addEventListener('keydown', async function(evento) {
     if (evento.key === 'Enter') {
+
+
         const dados = await buscarPokemon(nomePokemon.value)
         
        imagemPokemon.src = dados.sprites.front_default
@@ -37,6 +42,7 @@ nomePokemon.addEventListener('keydown', async function(evento) {
        tipo1.textContent = dados.types[0].type.name
        tipo1.style.backgroundColor = corDoTipo(dados.types[0].type.name)
        if (dados.types[1]){
+        tipo2.style.display = 'block'
         tipo2.textContent = dados.types[1].type.name
         tipo2.style.backgroundColor = corDoTipo(dados.types[1].type.name)            
        } else {
@@ -46,8 +52,11 @@ nomePokemon.addEventListener('keydown', async function(evento) {
         hp.textContent = `HP= ${dados.stats[0].base_stat}`
         ataque.textContent = `Atq= ${dados.stats[1].base_stat}`
         defesa.textContent = `Def= ${dados.stats[2].base_stat}`
- 
+       
+        nomePokemon.value = ''
+        nomePokemon.focus()
     }
+    
 })
 
 
