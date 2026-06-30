@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import './App.css'
 import CardPokemon from "./CardPokemon"
 import Header from "./Header"
@@ -7,7 +7,7 @@ function App () {
 
   const [busca, setBusca] = useState ('')
   const [pokemon, setPokemon] = useState(null)
-
+  
   const buscarPokemon = async (nome) => {
     const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`)
     if (!resposta.ok){
@@ -18,6 +18,9 @@ function App () {
             return setPokemon(dados)
   }
 
+  useEffect ( () => {
+    buscarPokemon('Pikachu')
+  },[])
 
 
   return (
