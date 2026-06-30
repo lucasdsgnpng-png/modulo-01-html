@@ -1,5 +1,7 @@
 import { useState } from "react"
 import './App.css'
+import CardPokemon from "./CardPokemon"
+import Header from "./Header"
 
 function App () {
 
@@ -20,38 +22,11 @@ function App () {
 
   return (
     <div>
-      <h1>Pokédex</h1>
-      <input
-        type="text"
-        placeholder="Digite o nome do Pokémon"
-        value={busca}
-        onChange={(e) => setBusca(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-          buscarPokemon(busca)
-        }
-      }}
-      /> 
+      
+      <Header busca ={busca} setBusca={setBusca} buscarPokemon={buscarPokemon} />
 
-      {pokemon && (
-        <section id="card-pokemon">
-      <img src={pokemon.sprites.front_default} alt="Imagem do Pokémon" />
-      <h2 id="nome-pokemon">{pokemon.name}</h2>
-      <div id="tipos-pokemon">
-        <span id="tipo1">{pokemon.types[0].type.name}</span>
-        {pokemon.types[1] && (
-          <span id="tipo2">{pokemon.types[1].type.name}</span>
-        )}
+      {pokemon && <CardPokemon pokemon={pokemon} />}
         
-       </div>
-       <div id="stats-pokemon">
-        <span id="hp">{`Hp: ${pokemon.stats[0].base_stat}`}</span>
-        <span id="ataque">{`Atq: ${pokemon.stats[1].base_stat}`}</span>
-        <span id="defesa">{`Def: ${pokemon.stats[2].base_stat}`}</span>
-       </div>
-    </section>
-      )}
-
     </div>
   )
 }
