@@ -1,34 +1,19 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext} from "react"
 import './App.css'
-import CardPokemon from "./CardPokemon"
-import Header from "./Header"
+import { ThemeContext } from "./ThemeContext"
+import { Routes, Route } from 'react-router-dom'
+import PaginaPrincipal from './PaginaPrincipal'
+import  PaginaDetalhes from './PaginaDetalhes.jsx'
 
 function App () {
 
-  const [busca, setBusca] = useState ('')
-  const [pokemon, setPokemon] = useState(null)
-  
-  const buscarPokemon = async (nome) => {
-    const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`)
-    if (!resposta.ok){
-              window.alert(`O nome que você digitou não existe, tente novamente.`)
-              return
-            }
-            const dados = await resposta.json()
-            return setPokemon(dados)
-  }
-
-  useEffect ( () => {
-    buscarPokemon('Pikachu')
-  },[])
-
-
+  const { tema} = useContext(ThemeContext)
   return (
-    <div>
-      
-      <Header busca ={busca} setBusca={setBusca} buscarPokemon={buscarPokemon} />
-
-      {pokemon && <CardPokemon pokemon={pokemon} />}
+    <div className={tema}>
+      <Routes>
+  <Route path="/" element={<PaginaPrincipal />} />
+  <Route path="/pokemon/:nome" element={<PaginaDetalhes />} />
+</Routes>
         
     </div>
   )

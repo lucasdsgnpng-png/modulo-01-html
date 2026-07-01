@@ -1,5 +1,6 @@
+import { useNavigate } from 'react-router-dom'
 function CardPokemon ({pokemon}) {
-
+  const navigate = useNavigate()
     const cores = {
   normal: '#9e9e9e',
   fire: '#ff6b35',
@@ -23,7 +24,8 @@ function CardPokemon ({pokemon}) {
 
 const corDoTipo = (tipo) => cores[tipo]
     return (
-        <section id="card-pokemon">
+        <section id="card-pokemon" onClick={() => navigate(`/pokemon/${pokemon.name}`)
+        }>
       <img src={pokemon.sprites.front_default} alt="Imagem do Pokémon" />
       <h2 id="nome-pokemon">{pokemon.name}</h2>
       <div id="tipos-pokemon">

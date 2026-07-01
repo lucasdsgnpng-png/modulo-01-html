@@ -7,12 +7,10 @@
 }
 
 body {
-    background-color: #1a1a2e;
-    color: #ffffff;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
 }
 
 h1 {
@@ -28,12 +26,12 @@ input {
     border: none;
     font-size: 1rem;
     margin-bottom: 32px;
-    background-color: #16213e;
-    color: #ffffff;
+    background-color: var(--bg-card);
+    color: var(--texto);
 }
 
 #card-pokemon {
-    background-color: #16213e;
+    background-color: var(--bg-card);
     border-radius: 16px;
     padding: 32px;
     width: 300px;
@@ -79,4 +77,47 @@ input {
     font-size: 0.85rem;
     text-transform: capitalize;
     margin-top: 12px;
+}
+
+#botao-tema{
+    background-color: var(--bg-button);
+    color: var(--texto-btn);
+    padding: 10px 20px;
+    border: 2px solid #505050;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+.escuro {
+   --bg-principal: #1a1a2e;
+    --bg-card: #16213e;
+    --bg-button: #ffffff;
+    --texto: #ffffff;
+    --texto-btn: #000000;
+    background-color: var(--bg-principal);
+    color: var(--texto);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+.claro {
+    --bg-principal: #e5e5ee;
+    --bg-card: #ffffff;
+    --bg-button: #000000;
+    --texto: #333333;
+    --texto-btn: #ffffff;
+    background-color: var(--bg-principal);
+    color: var(--texto);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
 }
