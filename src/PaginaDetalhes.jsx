@@ -1,20 +1,11 @@
-import { useState, useEffect,} from "react"
+import usePokemon from "./usePokemon"
 import { useNavigate, useParams } from "react-router-dom"
 
 
 function PaginaDetalhes() {
   const navigate = useNavigate()
-  const [pokemon, setPokemon] = useState(null)
-  const buscarPokemon = async (nome) => {
-    const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`)
-         const dados = await resposta.json()
-            return setPokemon(dados)
-          }        
-
-   const { nome } = useParams()
-    useEffect ( () => {
-      buscarPokemon(nome)
-      },[nome])
+  const {nome} = useParams()
+  const pokemon = usePokemon(nome)
 
    return (
     <div>

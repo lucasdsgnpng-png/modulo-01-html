@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { ThemeContext } from "./ThemeContext"
 
-function Header({ busca, setBusca, buscarPokemon }) {
+function Header({ busca, setBusca, setNomeBuscado }) {
   const { tema, setTema } = useContext(ThemeContext)
   return (
         <>
@@ -13,7 +13,7 @@ function Header({ busca, setBusca, buscarPokemon }) {
         onChange={(e) => setBusca(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-          buscarPokemon(busca)
+          setNomeBuscado(busca)
         }
       }}
       /> 

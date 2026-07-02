@@ -1,28 +1,19 @@
 import { useState, useEffect, useContext} from "react"
 import CardPokemon from "./CardPokemon"
 import Header from "./Header"
+import usePokemon from "./usePokemon"
 
 function PaginaPrincipal () {
 
   const [busca, setBusca] = useState ('')
-  const [pokemon, setPokemon] = useState(null)
+  const [nomeBuscado, setNomeBuscado] = useState('Pikachu')
   
-  const buscarPokemon = async (nome) => {
-    const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`)
-    if (!resposta.ok){
-              window.alert(`O nome que você digitou não existe, tente novamente.`)
-              return
-            }
-            const dados = await resposta.json()
-            return setPokemon(dados)
-  }
-
-  useEffect ( () => {
-    buscarPokemon('Pikachu')
-  },[])
+  const pokemon = usePokemon(nomeBuscado)
+    
+              
   return (
     <>
-      <Header busca={busca} setBusca={setBusca} buscarPokemon={buscarPokemon} />
+      <Header busca={busca} setBusca={setBusca} setNomeBuscado={setNomeBuscado} />
       {pokemon && <CardPokemon pokemon={pokemon} />}
     </>
   )
