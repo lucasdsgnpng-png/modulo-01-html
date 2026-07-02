@@ -121,3 +121,36 @@ input {
     align-items: center;
     padding: 40px 20px;
 }
+
+#grid-pokemon {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.card-lista {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.card-lista:hover {
+    transform: scale(1.05);
+}
+
+.card-lista img {
+    width: 80px;
+    height: 80px;
+}
+
+.card-lista p {
+    margin-top: 8px;
+    text-transform: capitalize;
+    font-size: 0.85rem;
+}

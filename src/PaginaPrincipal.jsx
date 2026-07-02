@@ -1,21 +1,30 @@
-import { useState, useEffect, useContext} from "react"
-import CardPokemon from "./CardPokemon"
+import { useState, useMemo } from "react"
 import Header from "./Header"
-import usePokemon from "./usePokemon"
+import CardLista from "./CardLista"
+import usePokemonLista from "./usePokemonLista"
 
-function PaginaPrincipal () {
+function PaginaPrincipal() {
+  const [busca, setBusca] = useState('')
+  const [nomeBuscado, setNomeBuscado] = useState('')
+  const lista = usePokemonLista()
 
-  const [busca, setBusca] = useState ('')
-  const [nomeBuscado, setNomeBuscado] = useState('Pikachu')
-  
-  const pokemon = usePokemon(nomeBuscado)
-    
-              
+  const listaFiltrada = useMemo(() => {
+    return lista.filter(pokemon => 
+        pokemon.name.includes(busca.toLowerCase())
+    )
+}, [lista, busca])
+
   return (
     <>
       <Header busca={busca} setBusca={setBusca} setNomeBuscado={setNomeBuscado} />
-      {pokemon && <CardPokemon pokemon={pokemon} />}
+      
+      <div id="grid-pokemon">
+        {listaFiltrada.map((pokemon) => (
+          <CardLista key={pokemon.name} nome={pokemon.name} url={pokemon.url} />
+        ))}
+      </div>
     </>
   )
 }
+
 export default PaginaPrincipal
